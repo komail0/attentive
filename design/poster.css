@@ -1,0 +1,228 @@
+/* Lecture Companion, poster look. Two themes from the reference images:
+   dark  = "Nocturne": charcoal ground, muted lavender + mustard yellow, vinyl-record circle motif
+   light = "Monsteba": cream ground, deep leaf green + coral, big circle and leaf motif
+   Shared template grammar: giant condensed two-colour headline, tiny tracked meta labels,
+   small pill buttons, one big geometric circle, one round tilted badge. */
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap");
+
+:root[data-theme="dark"] {
+  --bg: #28272C; --surface: #36353B; --surface-2: #2F2E34; --line: #4B4A51;
+  --text: #F4F0E6; --muted: #BCB8AE;
+  --d1: #C79A2B;           /* headline word 1: deep gold */
+  --d2: #F5C336;           /* headline word 2 and accent: bright gold */
+  --accent: #F5C336; --on-accent: #1E1D1A;
+  --warn: #FF7B8C; --art-bg: #C79A2B; --page: #1D1C20;
+}
+:root[data-theme="light"] {
+  --bg: #F4EFE1; --surface: #FFFFFF; --surface-2: #EBE5D3; --line: #CFC8B2;
+  --text: #123524; --muted: #4F5F54;
+  --d1: #1E4D38;           /* headline word 1: parent leaf green */
+  --d2: #3C8B63;           /* headline word 2: lighter green (large text only) */
+  --accent: #276B49; --on-accent: #F4EFE1;
+  --warn: #A8261C; --art-bg: #F4EFE1; --page: #E4DDC8;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--text); font-family: "DM Sans", system-ui, sans-serif; line-height: 1.45; }
+[lang="ur"] { font-family: "Baloo Bhaijaan 2", "Segoe UI", sans-serif; line-height: 1.6; }
+
+/* sheet chrome (not part of the product) */
+.top { position: sticky; top: 0; z-index: 5; background: var(--page); border-bottom: 1px solid var(--line); padding: 10px 24px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.top b { font: 400 1.3rem Anton; letter-spacing: .02em; text-transform: uppercase; }
+.top a { color: var(--text); font-size: .85rem; font-weight: 600; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 24px; }
+h2.sec { font: 400 2.4rem/1 Anton; text-transform: uppercase; margin: 36px 0 4px; color: var(--d1); }
+.note-sheet { color: var(--muted); margin: 0 0 18px; max-width: 70ch; }
+.grp { margin: 0 0 40px; }
+.grp > .meta { display: block; margin-bottom: 10px; }
+.pair { display: flex; gap: 28px; flex-wrap: wrap; }
+
+/* tokens used everywhere */
+.meta { font: 600 10.5px "DM Sans"; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+[lang="ur"] .meta, [lang="ur"] .btn, [lang="ur"] .nav-l { font-family: "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; font-size: .85rem; }
+.display { font: 400 104px/.88 Anton, Impact, sans-serif; text-transform: uppercase; margin: 0; letter-spacing: .005em; }
+.display .a { color: var(--d1); display: block; }
+.display .b { color: var(--d2); display: block; }
+[lang="ur"] .display { font: 800 64px/1.2 "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; }
+.h2 { font: 400 28px/1 Anton; text-transform: uppercase; margin: 0; }
+[lang="ur"] .h2 { font: 800 26px/1.4 "Baloo Bhaijaan 2"; text-transform: none; }
+.sub { color: var(--muted); font-size: .95rem; margin: 0; }
+.fine { color: var(--muted); font-size: .82rem; margin: 0; }
+
+/* phone */
+.phone { width: 390px; min-height: 840px; background: var(--bg); border: 1px solid var(--line); border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+.nav { display: flex; align-items: center; gap: 8px; padding: 16px 18px 6px; }
+.brand { display: flex; align-items: center; gap: 8px; flex: 1; font: 700 10.5px "DM Sans"; letter-spacing: .14em; text-transform: uppercase; }
+[lang="ur"] .brand { font: 700 .95rem "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; }
+.brand i { width: 9px; height: 9px; background: var(--accent); display: inline-block; border-radius: 2px; }
+.ctl { min-height: 44px; min-width: 44px; padding: 0 14px; border: 1.5px solid var(--text); border-radius: 999px; background: transparent; color: var(--text); font: 700 11px "DM Sans"; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+[lang="ur"] .ctl { font-family: "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; font-size: .8rem; }
+.body { flex: 1; padding: 6px 18px 18px; display: flex; flex-direction: column; gap: 16px; position: relative; }
+.hero { position: relative; min-height: 250px; padding-top: 6px; }
+.circle { position: absolute; border-radius: 50%; background: var(--accent); }
+.hero .circle { width: 250px; height: 250px; inset-inline-end: -70px; top: 30px; opacity: 1; }
+:root[data-theme="dark"] .hero .circle { opacity: .0; }   /* dark: the yellow disc lives inside the slide card */
+.hero .display { position: relative; z-index: 2; }
+.art { position: absolute; z-index: 3; inset-inline-end: -4px; top: 10px; width: 150px; height: 150px; }
+.hero-meta { position: absolute; inset-inline-start: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; gap: 2px; }
+
+/* buttons: pill, small, one accent */
+.btn { min-height: 52px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent); color: var(--on-accent); font: 800 13px "DM Sans"; letter-spacing: .1em; text-transform: uppercase; padding: 0 24px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+[lang="ur"] .btn { font: 800 1rem "Baloo Bhaijaan 2"; }
+.btn.line { background: transparent; color: var(--text); border-color: var(--text); }
+.btn.sm { min-height: 44px; padding: 0 18px; font-size: 12px; }
+.btn.wide { width: 100%; }
+.btn.done { background: transparent; color: var(--text); border-color: var(--accent); }
+.btn:focus-visible, .ctl:focus-visible, .field input:focus-visible, .field textarea:focus-visible, .tabi:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+.row2 { display: flex; gap: 10px; }
+.row2 .btn { flex: 1; }
+
+/* round tilted badge, the template's "PRE-ORDER" circle. It is the pin button. */
+.badge { position: absolute; inset-inline-end: 14px; bottom: 74px; width: 96px; height: 96px; border-radius: 50%; background: var(--accent); color: var(--on-accent); border: 0; font: 800 12px/1.15 "DM Sans"; letter-spacing: .1em; text-transform: uppercase; transform: rotate(-12deg); display: grid; place-items: center; text-align: center; cursor: pointer; z-index: 6; box-shadow: 0 0 0 5px var(--bg); }
+[lang="ur"] .badge { font: 800 .95rem/1.3 "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; transform: rotate(12deg); }
+.badge:focus-visible { outline: 3px solid var(--text); outline-offset: 6px; }
+
+/* rows (the slide list) */
+.rows { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); }
+.row .num { font: 400 40px/1 Anton; color: var(--d1); }
+:root[data-theme="dark"] .row .num { color: var(--d1); }
+.row .ttl { font-weight: 700; font-size: 1.02rem; line-height: 1.25; }
+[lang="ur"] .row .ttl { font-weight: 700; line-height: 1.6; }
+.row .sum { color: var(--muted); font-size: .88rem; margin-top: 2px; }
+.row.on .num { color: var(--d2); }
+.row.pinned { border-inline-start: 6px solid var(--accent); padding-inline-start: 10px; }
+.chip { display: inline-block; background: var(--accent); color: var(--on-accent); font: 800 10px "DM Sans"; letter-spacing: .12em; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; margin-inline-start: 8px; vertical-align: middle; }
+[lang="ur"] .chip { font-family: "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; font-size: .75rem; }
+.chk { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+[lang="ur"] .chk { font-family: "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; font-size: .9rem; }
+
+/* status */
+.toast { background: var(--surface); border: 1.5px solid var(--text); border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.toast.warn { border: 2px dashed var(--warn); background: var(--surface-2); }
+.toast b { font-weight: 800; }
+.warnrow { display: flex; gap: 10px; align-items: flex-start; }
+.warnrow svg { flex: none; width: 22px; height: 22px; }
+.err { color: var(--warn); font-weight: 700; display: flex; gap: 8px; align-items: flex-start; }
+:root[data-theme="dark"] .err b { color: var(--warn); }
+
+/* form */
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font: 700 11px "DM Sans"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+[lang="ur"] .field label { font: 700 .95rem "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; }
+.field input, .field textarea { width: 100%; min-height: 58px; border: 2px solid var(--text); border-radius: 18px; background: transparent; color: var(--text); font: 700 1.5rem "DM Sans"; letter-spacing: .1em; padding: 0 18px; }
+.field input.plain, .field textarea { font: 500 1rem "DM Sans"; letter-spacing: 0; }
+[lang="ur"] .field textarea { font-family: "Baloo Bhaijaan 2"; }
+.field textarea { min-height: 120px; padding: 14px 18px; resize: none; }
+.field input.bad { border-color: var(--warn); border-style: dashed; }
+::placeholder { color: var(--muted); opacity: 1; }
+
+/* bottom nav: tiny labels like the template's nav links */
+.tabs { display: flex; border-top: 1px solid var(--line); background: var(--bg); }
+.tabi { flex: 1; min-height: 62px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: var(--muted); text-decoration: none; font: 700 11px "DM Sans"; letter-spacing: .12em; text-transform: uppercase; }
+[lang="ur"] .tabi { font: 700 .9rem "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; }
+.tabi[aria-current="page"] { color: var(--text); }
+.tabi[aria-current="page"]::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.tabi:not([aria-current])::before { content: ""; width: 7px; height: 7px; }
+
+/* sheet */
+.dim { position: absolute; inset: 0; background: rgba(10, 10, 16, .6); display: flex; align-items: flex-end; z-index: 9; }
+.sheetdlg { width: 100%; background: var(--bg); border-radius: 30px 30px 0 0; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 14px; border-top: 2px solid var(--accent); }
+.grab { width: 44px; height: 5px; border-radius: 3px; background: var(--line); align-self: center; }
+
+.empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 10px 0; }
+.seg { display: flex; border: 2px solid var(--text); border-radius: 999px; overflow: hidden; }
+.seg button { flex: 1; min-height: 44px; border: 0; background: transparent; color: var(--text); font: 800 11px "DM Sans"; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+[lang="ur"] .seg button { font: 700 .95rem "Baloo Bhaijaan 2"; letter-spacing: 0; text-transform: none; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.tl { border-inline-start: 3px solid var(--accent); padding-inline-start: 14px; display: flex; flex-direction: column; gap: 10px; }
+.tl .ts { font: 700 10.5px "DM Sans"; letter-spacing: .12em; color: var(--muted); }
+.card { background: var(--surface); border-radius: 22px; padding: 18px; }
+ul.clean { margin: 8px 0 0; padding-inline-start: 18px; display: flex; flex-direction: column; gap: 8px; }
+
+/* desktop (lecturer) */
+.desk { width: 1180px; max-width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-bottom: 28px; }
+.dnav { display: flex; align-items: center; gap: 28px; padding: 20px 36px; }
+.dnav .brand { flex: none; }
+.dnav .links { display: flex; gap: 24px; flex: 1; justify-content: center; }
+.nav-l { font: 600 11px "DM Sans"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+[lang="ur"] .nav-l { font-size: .9rem; }
+.dbody { padding: 8px 36px 36px; display: flex; flex-direction: column; gap: 28px; position: relative; }
+.dhero { position: relative; min-height: 300px; display: grid; grid-template-columns: 1fr 1fr; align-items: end; }
+.dhero .display { font-size: 190px; }
+[lang="ur"] .dhero .display { font-size: 110px; }
+.dhero .circle { width: 340px; height: 340px; inset-inline-end: 80px; top: -10px; }
+:root[data-theme="dark"] .dhero .circle { opacity: 0; }
+.dhero .art { width: 230px; height: 230px; inset-inline-end: 90px; top: 0; }
+.dhero .tallybox { position: absolute; inset-inline-end: 0; bottom: 0; text-align: end; z-index: 4; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.pillstat { display: inline-flex; gap: 10px; align-items: center; border: 1.5px solid var(--text); border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .9rem; }
+.stats { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.strip { display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; }
+.cell { background: var(--surface); border-radius: 18px; padding: 12px 12px 10px; min-height: 140px; display: flex; flex-direction: column; gap: 6px; color: var(--text); text-decoration: none; border: 2px solid transparent; }
+.cell .n { font: 400 30px/1 Anton; color: var(--d1); }
+.cell .tt { font-size: .8rem; line-height: 1.25; flex: 1; color: var(--muted); }
+.cell.sel { border-color: var(--accent); }
+.cell.sel .n { color: var(--d2); }
+.cell.now::after { content: "NOW"; font: 800 10px "DM Sans"; letter-spacing: .12em; background: var(--accent); color: var(--on-accent); padding: 1px 8px; border-radius: 999px; align-self: flex-start; }
+.cols { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; }
+.panel { background: var(--surface); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.cmt { background: var(--surface-2); border-inline-start: 4px solid var(--accent); border-radius: 12px; padding: 10px 14px; }
+.tr p { margin: 0 0 10px; }
+.tr p.hl { background: var(--surface-2); border-inline-start: 4px solid var(--accent); padding: 8px 12px; border-radius: 12px; }
+.tally { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tally svg { height: 28px; width: auto; }
+.tally.big svg { height: 56px; }
+.tcount { font: 400 2rem Anton; margin-inline-start: 6px; }
+.few { color: var(--muted); font-weight: 600; font-size: .85rem; display: inline-flex; gap: 6px; align-items: center; }
+.few i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); display: inline-block; }
+table.tbl { width: 100%; border-collapse: collapse; }
+table.tbl th { text-align: start; font: 700 10.5px "DM Sans"; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 10px; border-bottom: 1px solid var(--line); }
+table.tbl td { padding: 14px 10px; border-bottom: 1px solid var(--line); }
+.drop { border: 2.5px dashed var(--line); border-radius: 24px; padding: 40px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.steps { display: flex; gap: 12px; }
+.step { flex: 1; border-top: 4px solid var(--line); padding-top: 10px; font: 700 11px "DM Sans"; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.step.on { border-top-color: var(--accent); color: var(--text); }
+.authcard { max-width: 460px; margin: 10px auto 30px; display: flex; flex-direction: column; gap: 16px; }
+.code { font: 400 3.4rem Anton; letter-spacing: .08em; color: var(--d2); }
+.dbody .display.sm { font-size: 120px; }
+.err svg, .warnrow svg { width: 22px; height: 22px; flex: none; }
+.phone { min-height: 780px; }
+
+.body.hasbadge { padding-bottom: 130px; }
+.hero { min-height: 215px; }
+.phone .hero .display { font-size: 96px; }
+[lang="ur"].phone .hero .display { font-size: 64px; }
+.phone .hero .art { top: 104px; width: 168px; height: 126px; }
+.phone .hero .circle { width: 220px; height: 220px; top: 70px; inset-inline-end: -60px; }
+.btn.sm { letter-spacing: .06em; padding: 0 14px; }
+.authcard { margin: 10px 0 30px; }
+
+/* ===== real device chrome and icons ===== */
+.phone { width: 390px; min-height: 844px; border: 10px solid #0B0B10; border-radius: 52px; box-sizing: content-box; width: 370px; background-clip: padding-box; box-shadow: 0 0 0 2px var(--line); }
+.status { height: 46px; padding: 14px 26px 0; display: flex; align-items: center; justify-content: space-between; position: relative; font: 700 15px "DM Sans", sans-serif; color: var(--text); flex: none; }
+.island { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); width: 104px; height: 28px; background: #0B0B10; border-radius: 20px; }
+.sicons { display: inline-flex; gap: 6px; align-items: center; }
+.home { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); width: 128px; height: 5px; border-radius: 3px; background: var(--text); opacity: .85; z-index: 20; }
+.tabs { padding-bottom: 22px; }
+.ic { flex: none; vertical-align: middle; }
+.ic.warn { color: var(--warn); }
+.ctl { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.ctl.icon-only { padding: 0; width: 44px; }
+.btn .ic, .btn svg { flex: none; }
+.badge { flex-direction: column; gap: 2px; }
+.badge { display: flex; align-items: center; justify-content: center; }
+.tabi svg { margin-bottom: 0; }
+.tabi { gap: 3px; }
+.tabi[aria-current="page"]::before { display: none; }
+.tabi[aria-current="page"] svg { color: var(--accent); }
+.tabi:not([aria-current])::before { display: none; }
+.bigic { width: 84px; height: 84px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; }
+.bigic.warnic { background: transparent; border: 2px dashed var(--warn); color: var(--warn); }
+.cardhead { display: flex; align-items: center; gap: 10px; }
+.cic { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; flex: none; }
+.drop .bigic { background: transparent; border: 2px dashed var(--line); color: var(--text); }
+.pillstat { gap: 8px; }
+.seg button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.badge { bottom: 100px; }
+.body.hasbadge { padding-bottom: 150px; }
+.phone .hero { min-height: 0; }
+.hero-meta { position: static; margin-top: 10px; }

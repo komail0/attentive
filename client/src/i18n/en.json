@@ -241,5 +241,6 @@
  "notFoundText": "That page does not exist.",
  "goHome": "Go to join",
  "h_nf1": "Not",
- "h_nf2": "found"
+ "h_nf2": "found",
+ "lineAdded": "Line added."
 }

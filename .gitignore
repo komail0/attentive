@@ -8,3 +8,4 @@ server/data/uploads/
 client/test-results/
 client/playwright-report/
 .DS_Store
+*.tsbuildinfo

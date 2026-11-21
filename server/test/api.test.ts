@@ -265,6 +265,12 @@ describe("slide upload", () => {
 });
 
 describe("robustness", () => {
+  it("does not force https, so the app opens on a phone over plain http on the local network", async () => {
+    const res = await request(app).get("/api/health").expect(200);
+    expect(res.headers["content-security-policy"]).toContain("script-src 'self'");
+    expect(res.headers["content-security-policy"]).not.toContain("upgrade-insecure-requests");
+  });
+
   it("answers bad JSON and unknown routes without leaking details", async () => {
     const bad = await request(app).post("/api/auth/login").set("Content-Type", "application/json").send("{not json").expect(400);
     expect(bad.body).toEqual({ error: "invalid_json" });

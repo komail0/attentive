@@ -120,8 +120,9 @@ export default function Dashboard() {
             {slides.map((x) => {
               const nc = commentsFor(x.n).length;
               return (
-                <button key={x.n} type="button" className="cell" aria-pressed={x.n === selected.n} onClick={() => setSel(x.n)} aria-label={`${t("slide")} ${x.n}: ${slideTitle(x, lang)}`}>
-                  <span className="n" aria-hidden>
+                <button key={x.n} type="button" className="cell" aria-pressed={x.n === selected.n} onClick={() => setSel(x.n)}>
+                  <span className="n">
+                    <span className="sr-only">{t("slide")} </span>
                     {x.n}
                   </span>
                   <span className="tt" dir="auto">

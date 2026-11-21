@@ -135,7 +135,7 @@ export default function Setup() {
             </span>
             <h2 className="h2">{t("dropTitle")}</h2>
             <span className="sub">{t("dropSub")}</span>
-            <input ref={fileRef} type="file" accept="application/pdf,.pdf" className="sr-only" id="pdf" onChange={(e) => void upload(e.target.files?.[0])} />
+            <input ref={fileRef} type="file" accept="application/pdf,.pdf" className="sr-only" id="pdf" aria-label={t("chooseFile")} onChange={(e) => void upload(e.target.files?.[0])} />
             <button type="button" className={`btn line sm${busy === "upload" ? " busy" : ""}`} aria-disabled={busy === "upload" ? "true" : undefined} onClick={() => busy !== "upload" && fileRef.current?.click()}>
               {t("chooseFile")}
             </button>

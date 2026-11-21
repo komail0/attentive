@@ -81,7 +81,7 @@ export default function Join() {
           </p>
         </form>
         <p className="fine" style={{ marginTop: "auto" }}>
-          <Link to="/lecturer">{t("lecturerLink")}</Link>
+          <Link to="/lecturer" className="textlink">{t("lecturerLink")}</Link>
         </p>
       </main>
     </div>

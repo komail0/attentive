@@ -25,6 +25,8 @@ export function createApp(db: DB, clientDist = path.resolve(import.meta.dirname,
           workerSrc: ["'self'"],
           manifestSrc: ["'self'"],
           frameAncestors: ["'none'"],
+          // Off on purpose: this makes a browser load scripts over https even on a plain http address (a phone on the same Wi-Fi), leaving a blank page. Turn it on behind an https proxy.
+          upgradeInsecureRequests: null,
         },
       },
     }),

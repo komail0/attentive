@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Desk } from "../../components/Desk";
+import { Logo } from "../../components/Logo";
 import { Field, Hero } from "../../components/ui";
 import { ApiError } from "../../lib/api";
 import { errKey, useAuth } from "../../lib/auth";
@@ -49,19 +50,21 @@ export default function Login({ mode }: { mode: "signin" | "register" }) {
 
   return (
     <Desk signedIn={false}>
+      <div className="authgrid">
+      <div className="authmain">
       <Hero a={reg ? "lecJoin1" : "lecWelcome1"} b={reg ? "lecJoin2" : "lecWelcome2"} small />
       <form className="authcard" onSubmit={submit} noValidate>
         <p className="sub">{t("lecAuthSub")}</p>
         {reg && (
-          <Field label={t("fullName")} error={errs.name}>
-            {(p) => <input {...p} id="f-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />}
+          <Field label={t("fullName")} error={errs.name} id="f-name">
+            {(p) => <input {...p} value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />}
           </Field>
         )}
-        <Field label={t("email")} error={errs.email}>
-          {(p) => <input {...p} id="f-email" type="email" dir="ltr" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />}
+        <Field label={t("email")} error={errs.email} id="f-email">
+          {(p) => <input {...p} type="email" dir="ltr" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />}
         </Field>
-        <Field label={t("password")} error={errs.password}>
-          {(p) => <input {...p} id="f-password" type="password" dir="ltr" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={reg ? "new-password" : "current-password"} />}
+        <Field label={t("password")} error={errs.password} id="f-password">
+          {(p) => <input {...p} type="password" dir="ltr" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={reg ? "new-password" : "current-password"} />}
         </Field>
         {reg && <span className="fine">{t("passwordHint")}</span>}
         {errs.form && (
@@ -80,6 +83,11 @@ export default function Login({ mode }: { mode: "signin" | "register" }) {
           )}
         </p>
       </form>
+      </div>
+      <div className="logo-stage" aria-hidden="true">
+        <Logo size={420} className="logo" animated />
+      </div>
+      </div>
     </Desk>
   );
 }

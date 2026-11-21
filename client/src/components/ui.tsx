@@ -16,7 +16,7 @@ export function Controls() {
       <button type="button" className="ctl icon-only" onClick={cycleSize} aria-label={`Aa. ${sizeLabel}`} title={t("textSize")}>
         <ALargeSmall size={24} aria-hidden />
       </button>
-      <button type="button" className="ctl" onClick={toggleLang} aria-label={`English | اردو. ${t("langSwitch")}`}>
+      <button type="button" className="ctl" onClick={toggleLang} aria-label={`EN | اردو. ${t("langSwitch")}`}>
         <Languages size={18} aria-hidden />
         <span lang="en">EN</span> | <span lang="ur">اردو</span>
       </button>
@@ -136,8 +136,9 @@ export function Sheet({ titleId, onClose, children }: { titleId: string; onClose
 }
 
 /** Label + input/textarea with an error that is linked to the field. */
-export function Field({ label, error, children }: { label: string; error?: string; children: (p: { id: string; "aria-invalid"?: "true"; "aria-describedby"?: string }) => ReactNode }) {
-  const id = useId();
+export function Field({ label, error, id: idProp, children }: { label: string; error?: string; id?: string; children: (p: { id: string; "aria-invalid"?: "true"; "aria-describedby"?: string }) => ReactNode }) {
+  const auto = useId();
+  const id = idProp ?? auto;
   const errId = `${id}-err`;
   return (
     <div className="field">

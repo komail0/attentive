@@ -1,4 +1,13 @@
+import fs from "node:fs";
 import path from "node:path";
+
+// Load a .env file from the working directory or the repo root, if there is one.
+for (const f of [path.resolve(".env"), path.resolve("..", ".env")]) {
+  if (fs.existsSync(f)) {
+    process.loadEnvFile(f);
+    break;
+  }
+}
 
 const isProd = process.env.NODE_ENV === "production";
 

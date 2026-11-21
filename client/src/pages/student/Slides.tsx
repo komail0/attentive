@@ -77,12 +77,18 @@ export default function Slides() {
           })}
         </ul>
       </section>
-      <div className="fab-wrap">
+      <div className="dock">
+        <div className="dock-info">
+          <span className="meta">{t("now")}</span>
+          <span className="dock-title" dir="auto">
+            {t("slide")} {session.current}
+          </span>
+        </div>
         <button
           type="button"
           className="badge"
           aria-disabled={currentDone || fabBusy ? "true" : undefined}
-          aria-label={currentDone ? t("pinnedAria", { n: session.current, title: slideTitle(slides.find((s) => s.n === session.current) ?? slides[0], lang) }) : t("pinThis")}
+          aria-label={currentDone ? t("pinnedAria", { n: session.current, title: slideTitle(slides.find((s) => s.n === session.current) ?? slides[0], lang) }) : `${t("pinBadge")} – ${t("slide")} ${session.current}`}
           onClick={() => {
             if (!currentDone && !fabBusy) void pin(session.current);
           }}
@@ -91,6 +97,6 @@ export default function Slides() {
           <span>{currentDone ? t("pinnedBadge") : t("pinBadge")}</span>
         </button>
       </div>
-    </>
+      </>
   );
 }

@@ -45,8 +45,8 @@ export default function NewSession() {
       <Hero a="newSession1" b="newSession2" small />
       <Steps current={1} />
       <form className="panel" onSubmit={submit} noValidate style={{ maxWidth: "40rem" }}>
-        <Field label={t("lectureTitle")} error={titleErr}>
-          {(p) => <input {...p} id="f-title" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} />}
+        <Field label={t("lectureTitle")} error={titleErr} id="f-title">
+          {(p) => <input {...p} value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} />}
         </Field>
         <Field label={t("course")}>{(p) => <input {...p} value={course} onChange={(e) => setCourse(e.target.value)} maxLength={120} />}</Field>
         <div className="field" role="group" aria-labelledby="lang-l">
